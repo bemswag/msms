@@ -82,7 +82,7 @@ const App: React.FC = () => {
   return (
     <Container className="container">
       <Box my={4}>
-        <Typography className="title" variant="h3" component="h1" gutterBottom>
+        <Typography className="title" variant="h3" component="h2" gutterBottom>
           귀여운 민승이의 하루 일침
         </Typography>
       </Box>
@@ -92,9 +92,9 @@ const App: React.FC = () => {
           color="primary"
           onClick={handleButtonClick}
           style={{
-            backgroundColor: '#4caf50',
+            backgroundColor: 'pink',
             color: '#fff',
-            padding: '10px 20px',
+            padding: '5px 15px',
             fontSize: '16px'
           }}
         >
