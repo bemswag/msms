@@ -2,26 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Typography, Tabs, Tab, Box } from '@mui/material';
 import './App.css';
 import minsImage from './mins.jpg';
-import minsImage1 from './mins1.jpg';
-import minsImage2 from './mins2.jpg';
-import minsImage3 from './mins3.jpg';
-import minsImage4 from './mins4.jpg';
-import minsImage5 from './mins5.jpg';
-import minsImage6 from './mins6.jpg';
 
 const App: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [tip, setTip] = useState('');
-
-  const images = [
-    minsImage,
-    minsImage1,
-    minsImage2,
-    minsImage3,
-    minsImage4,
-    minsImage5,
-    minsImage6
-  ];
 
   const tips = [
     '이어폰 꽂지 말고 앞에 쳐 보면서 걸어',
@@ -114,7 +98,7 @@ const App: React.FC = () => {
         </Tabs>
       </div>
       <Box my={4} textAlign="center">
-        <img src={images[selectedTab]} alt={`mins-${selectedTab}`} className="image" />
+        <img src={minsImage} alt={`mins-${selectedTab}`} className="image" />
         <Typography className="tip" variant="h6" component="p" gutterBottom>
           {tip}
         </Typography>
