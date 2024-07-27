@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Container, Typography, Tabs, Tab, Box } from '@mui/material';
+import React, { useState, useCallback } from 'react';
+import { Container, Typography, Button, Box } from '@mui/material';
 import './App.css';
 import minsImage from './mins.jpg';
+import minsImage1 from './mins1.jpg';
 
 const App: React.FC = () => {
-  const [selectedTab, setSelectedTab] = useState(0);
   const [tip, setTip] = useState('');
+  const [imageVisible, setImageVisible] = useState(false);
 
   const tips = [
     '이어폰 꽂지 말고 앞에 쳐 보면서 걸어',
@@ -64,41 +65,45 @@ const App: React.FC = () => {
     return tips[Math.floor(Math.random() * tips.length)];
   }, [tips]);
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setSelectedTab(newValue);
-    setTip(getRandomTip());
-  };
+  const handleButtonClick = () => {
+    setImageVisible(false);
 
-  useEffect(() => {
-    setTip(getRandomTip());
-  }, [selectedTab, getRandomTip]);
+    // 일정 시간 동안 랜덤 일침을 표시한 후 멈추기
+    const intervalId = setInterval(() => {
+      setTip(getRandomTip());
+    }, 100); // 0.1초마다 일침 변경
+
+    setTimeout(() => {
+      clearInterval(intervalId);
+      setImageVisible(true); // 일정 시간이 지나면 이미지 표시
+    }, 2000); // 2초 후 멈추기
+  };
 
   return (
     <Container className="container">
       <Box my={4}>
         <Typography className="title" variant="h3" component="h1" gutterBottom>
-          민승이의 일침
+          귀여운 민승이의 하루 일침
         </Typography>
       </Box>
-      <div className="tabs-container">
-        <Tabs
-          value={selectedTab}
-          onChange={handleTabChange}
-          indicatorColor="primary"
-          textColor="primary"
-          centered
+      <Box textAlign="center" my={4}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleButtonClick}
+          style={{
+            backgroundColor: '#4caf50',
+            color: '#fff',
+            padding: '10px 20px',
+            fontSize: '16px'
+          }}
         >
-          <Tab label="월요일" />
-          <Tab label="화요일" />
-          <Tab label="수요일" />
-          <Tab label="목요일" />
-          <Tab label="금요일" />
-          <Tab label="토요일" />
-          <Tab label="일요일" />
-        </Tabs>
-      </div>
+          오늘의 일침
+        </Button>
+      </Box>
       <Box my={4} textAlign="center">
-        <img src={minsImage} alt={`mins-${selectedTab}`} className="image" />
+        {!imageVisible && <img src={minsImage1} alt="mins1" className="image" />}
+        {imageVisible && <img src={minsImage} alt="mins" className="image" />}
         <Typography className="tip" variant="h6" component="p" gutterBottom>
           {tip}
         </Typography>
