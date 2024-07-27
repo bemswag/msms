@@ -1,0 +1,28 @@
+/* src/App.css */
+.container {
+  margin-top: 40px;
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 400px;
+  margin-top: 20px;
+}
+
+.tip {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #555;
+}
